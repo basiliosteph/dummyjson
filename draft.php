@@ -10,5 +10,6 @@ $client = new Client([
 $response = $client->get('https://dummyjson.com/');
 $code = $response->getStatusCode();
 $body = $response->getBody();
-var_dump($body)
+$result = json_decode($body);
+var_dump($result);
 ?>
