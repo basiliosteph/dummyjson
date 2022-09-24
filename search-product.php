@@ -37,7 +37,9 @@ $client = new Client([
 </html>
 
 <?php
-
+$products = [
+    'products' => []
+];
 if (isset($_POST['search_product'])){
 
     $search_product = $_POST['search_product'];
