@@ -4,14 +4,18 @@ require "vendor/autoload.php";
 use GuzzleHttp\Client;
 
 $client = new Client([
-        'base_uri' => 'https://dummyjson.com/users/1'
+        'base_uri' => 'https://dummyjson.com/'
 ]);
-
 $response = $client->get("https://dummyjson.com/users/1");
+$id = $_GET["user_id"];
+$response = $client->get('users/'. $id);
 $code = $response->getStatusCode();
 $body = $response->getBody();
-$users = json_decode($body)->users;
-// var_dump($body)
+$user = json_decode($body);
+
+//  echo '<pre>';
+//  var_dump($user);
+//  exit();
 
 ?>
 
@@ -43,7 +47,6 @@ $users = json_decode($body)->users;
     </tr>
   </thead>
   <tbody>
-    <?php foreach($users as $user){ ?>
       <tr>
         <th scope="row"><?php echo $user->id ?> </th>
         <td><?php echo $user->firstName ?> </td>
@@ -55,7 +58,6 @@ $users = json_decode($body)->users;
         <td><?php echo $user->bloodGroup ?> </td>
         <td><img src="<?php echo $user->image ?>" width="100" length="100" </td>
       </tr>
-      <?php }?>
   </tbody>
  </table>
 </div>
